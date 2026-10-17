@@ -1,1 +1,977 @@
+<!DOCTYPE html>  
+<html lang="ar" dir="rtl">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Unit 4: Favorite Pastimes - Grammar</title>  
+    <script src="https://cdn.tailwindcss.com"></script>  
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">  
+    <style>  
+        :root {  
+            --primary: #1e3a8a; /* Navy Blue */  
+            --secondary: #7e22ce; /* Purple */  
+            --accent: #14b8a6; /* Turquoise */  
+            --gold: #eab308; /* Gold */  
+        }  
+        body {  
+            font-family: 'Tajawal', sans-serif;  
+            background-color: #f8fafc;  
+            color: #334155;  
+            overflow-x: hidden;  
+        }  
+        .en-text {  
+            font-family: 'Nunito', sans-serif;  
+            direction: ltr;  
+            display: inline-block;  
+        }  
+        .en-container {  
+            font-family: 'Nunito', sans-serif;  
+            direction: ltr;  
+            text-align: left;  
+        }  
+          
+        /* Animations */  
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }  
+        @keyframes fadeIn {  
+            from { opacity: 0; transform: translateY(15px); }  
+            to { opacity: 1; transform: translateY(0); }  
+        }  
+          
+        .pulse-soft { animation: pulseSoft 2s infinite; }  
+        @keyframes pulseSoft {  
+            0%, 100% { transform: scale(1); }  
+            50% { transform: scale(1.02); }  
+        }  
+  
+        /* Certificate Specific */  
+        #cert-container {  
+            background-image: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%);  
+        }  
+        .cert-border {  
+            border: 12px solid var(--primary);  
+            outline: 4px solid var(--gold);  
+            outline-offset: -16px;  
+        }  
+  
+        /* Custom Scrollbar */  
+        ::-webkit-scrollbar { width: 8px; }  
+        ::-webkit-scrollbar-track { background: #f1f1f1; }  
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }  
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }  
+  
+        /* Utilities */  
+        .hidden-screen { display: none !important; }  
+        .btn-hover { transition: all 0.2s; }  
+        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }  
+        .btn-active:active { transform: translateY(0); }  
+    </style>  
+</head>  
+<body class="min-h-screen flex flex-col">  
+  
+    <header class="bg-blue-900 text-white shadow-md z-10 sticky top-0">  
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">  
+            <div class="flex items-center gap-2">  
+                <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>  
+                <h1 class="font-bold text-lg md:text-xl tracking-wide">Grammar <span class="text-teal-400">Master</span></h1>  
+            </div>  
+            <div class="flex gap-3">  
+                <button id="btn-mute" class="p-2 bg-blue-800 rounded-full hover:bg-blue-700 transition" onclick="toggleMute()" aria-label="كتم الصوت">  
+                    <svg id="icon-sound-on" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5 11h4l5-5v12l-5-5H5z"></path></svg>  
+                    <svg id="icon-sound-off" class="w-5 h-5 text-red-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>  
+                </button>  
+                <button id="btn-home" class="p-2 bg-blue-800 rounded-full hover:bg-blue-700 transition hidden" onclick="goHome()" title="الرئيسية">  
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>  
+                </button>  
+            </div>  
+        </div>  
+    </header>  
+  
+    <main class="flex-grow w-full max-w-4xl mx-auto p-4 md:p-6 flex flex-col justify-center">  
+          
+        <!-- ==================== 1. INTRO SCREEN ==================== -->  
+        <section id="screen-intro" class="fade-in bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">  
+            <div class="bg-blue-900 text-white p-8 md:w-2/5 flex flex-col justify-center items-center text-center">  
+                <span class="bg-purple-600 text-xs font-bold px-3 py-1 rounded-full mb-4">Unit 4: Favorite Pastimes</span>  
+                <h2 class="text-3xl font-bold mb-2">3 Grammar</h2>  
+                <p class="text-blue-200 mt-2">افهم القاعدة • تدرّب • اختبر نفسك</p>  
+                <div class="mt-8 text-sm text-blue-300">  
+                    Teacher: Mohammad AlFaifi  
+                </div>  
+            </div>  
+            <div class="p-8 md:w-3/5 flex flex-col justify-center">  
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">أهلاً بك في درس القواعد</h3>  
+                <div class="space-y-4">  
+                    <div>  
+                        <label for="student-name" class="block text-gray-700 font-semibold mb-2">أدخل اسمك للبدء:</label>  
+                        <input type="text" id="student-name" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-teal-500 focus:ring-0 transition text-lg" placeholder="الاسم الثلاثي...">  
+                        <p id="name-error" class="text-red-500 text-sm mt-1 hidden">يرجى كتابة اسمك للمتابعة.</p>  
+                    </div>  
+                    <button onclick="startApp()" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 rounded-xl shadow-lg btn-hover btn-active text-lg pulse-soft mt-4">  
+                        ابدأ التعلم  
+                    </button>  
+                </div>  
+            </div>  
+        </section>  
+  
+        <!-- ==================== 2. LEARN SCREEN ==================== -->  
+        <section id="screen-learn" class="fade-in hidden-screen flex-grow flex flex-col">  
+            <!-- Progress Bar -->  
+            <div class="mb-6">  
+                <div class="flex justify-between text-sm font-bold text-gray-500 mb-2">  
+                    <span>شرح القواعد</span>  
+                    <span id="learn-progress-text">بطاقة 1 من 5</span>  
+                </div>  
+                <div class="w-full bg-gray-200 rounded-full h-2.5">  
+                    <div id="learn-progress-bar" class="bg-purple-600 h-2.5 rounded-full transition-all duration-300" style="width: 20%"></div>  
+                </div>  
+            </div>  
+  
+            <!-- Card Container -->  
+            <div id="learn-card-container" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 flex-grow flex flex-col justify-center relative min-h-[400px]">  
+                <!-- Cards will be injected here by JS -->  
+            </div>  
+  
+            <!-- Controls -->  
+            <div class="flex justify-between mt-6">  
+                <button id="btn-learn-prev" onclick="changeLearnCard(-1)" class="px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-300 transition opacity-50 cursor-not-allowed" disabled>  
+                    السابق  
+                </button>  
+                <button id="btn-learn-next" onclick="changeLearnCard(1)" class="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-md btn-hover">  
+                    التالي  
+                </button>  
+            </div>  
+        </section>  
+  
+        <!-- ==================== 3. PRACTICE INTRO ==================== -->  
+        <section id="screen-practice-intro" class="fade-in hidden-screen bg-white rounded-2xl shadow-xl p-8 text-center max-w-2xl mx-auto w-full mt-10">  
+            <div class="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">  
+                <svg class="w-10 h-10 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>  
+            </div>  
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">وقت التدريب!</h2>  
+            <p class="text-lg text-gray-600 mb-8">لقد أنهيت الشرح. الآن لنتدرب على ما تعلمته.<br>ستعرف الإجابة الصحيحة وتفسيرها بعد كل سؤال مباشرة.</p>  
+            <button onclick="startPractice()" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg btn-hover text-lg">  
+                ابدأ التدريب  
+            </button>  
+        </section>  
+  
+        <!-- ==================== 4. PRACTICE SCREEN ==================== -->  
+        <section id="screen-practice" class="fade-in hidden-screen flex-grow flex flex-col max-w-3xl mx-auto w-full">  
+            <div class="mb-4 flex justify-between items-center">  
+                <span class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-lg">تدريب تفاعلي</span>  
+                <span id="practice-counter" class="text-gray-500 font-bold">سؤال 1 / 12</span>  
+            </div>  
+              
+            <div class="bg-white rounded-2xl shadow-md p-6 md:p-8 flex-grow flex flex-col border-t-4 border-blue-500">  
+                <div class="text-gray-500 text-sm mb-2">اختر الإجابة الصحيحة لإكمال الجملة:</div>  
+                <h3 id="practice-q-text" class="en-container text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-100">  
+                    <!-- Question -->  
+                </h3>  
+                  
+                <div id="practice-options" class="space-y-3 flex-grow en-container">  
+                    <!-- Options injected here -->  
+                </div>  
+  
+                <!-- Feedback Area -->  
+                <div id="practice-feedback" class="mt-6 p-4 rounded-xl hidden flex-col transition-all">  
+                    <div class="flex items-center gap-3 mb-2 font-bold text-lg" id="practice-feedback-title">  
+                        <!-- Icon and Correct/Wrong text -->  
+                    </div>  
+                    <div id="practice-feedback-text" class="text-gray-700 leading-relaxed">  
+                        <!-- Explanation -->  
+                    </div>  
+                </div>  
+            </div>  
+  
+            <div class="mt-6 flex justify-end">  
+                <button id="btn-practice-next" onclick="nextPractice()" class="hidden px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-md btn-hover">  
+                    السؤال التالي  
+                </button>  
+            </div>  
+        </section>  
+  
+        <!-- ==================== 5. QUIZ INTRO ==================== -->  
+        <section id="screen-quiz-intro" class="fade-in hidden-screen bg-white rounded-2xl shadow-xl p-8 text-center max-w-2xl mx-auto w-full mt-10 border-t-4 border-purple-600">  
+            <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">  
+                <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>  
+            </div>  
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">التقييم النهائي</h2>  
+            <p class="text-lg text-gray-600 mb-4">أحسنت في التدريب! الآن سنختبر فهمك بـ 15 سؤالاً.</p>  
+            <ul class="text-right text-gray-600 space-y-2 mb-8 inline-block mx-auto text-sm md:text-base">  
+                <li>• الإجابة نهائية بعد اختيارها.</li>  
+                <li>• لن تظهر النتيجة إلا في النهاية.</li>  
+                <li>• ركز جيداً للحصول على شهادة الإنجاز!</li>  
+            </ul>  
+            <br>  
+            <button onclick="startQuiz()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-10 rounded-xl shadow-lg btn-hover text-lg">  
+                ابدأ الاختبار  
+            </button>  
+        </section>  
+  
+        <!-- ==================== 6. QUIZ SCREEN ==================== -->  
+        <section id="screen-quiz" class="fade-in hidden-screen flex-grow flex flex-col max-w-3xl mx-auto w-full">  
+            <div class="mb-4">  
+                <div class="flex justify-between items-center mb-2">  
+                    <span class="bg-purple-100 text-purple-800 text-sm font-bold px-3 py-1 rounded-lg">الاختبار النهائي</span>  
+                    <span id="quiz-counter" class="text-gray-500 font-bold">سؤال 1 / 15</span>  
+                </div>  
+                <div class="w-full bg-gray-200 rounded-full h-1.5">  
+                    <div id="quiz-progress-bar" class="bg-purple-500 h-1.5 rounded-full transition-all duration-300" style="width: 0%"></div>  
+                </div>  
+            </div>  
+              
+            <div class="bg-white rounded-2xl shadow-md p-6 md:p-8 flex-grow flex flex-col border-t-4 border-purple-500">  
+                <h3 id="quiz-q-text" class="en-container text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-100">  
+                    <!-- Question -->  
+                </h3>  
+                  
+                <div id="quiz-options" class="space-y-3 flex-grow en-container">  
+                    <!-- Options injected here -->  
+                </div>  
+            </div>  
+  
+            <div class="mt-6 flex justify-end">  
+                <button id="btn-quiz-next" onclick="nextQuiz()" class="opacity-50 cursor-not-allowed px-8 py-3 bg-purple-600 text-white font-bold rounded-xl transition shadow-md" disabled>  
+                    تثبيت الإجابة والتالي  
+                </button>  
+            </div>  
+        </section>  
+  
+        <!-- ==================== 7. RESULTS SCREEN ==================== -->  
+        <section id="screen-results" class="fade-in hidden-screen w-full max-w-3xl mx-auto">  
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-6">  
+                <div class="bg-blue-900 p-8 text-center text-white relative">  
+                    <h2 class="text-3xl font-bold mb-2">النتيجة النهائية</h2>  
+                    <p class="text-blue-200" id="result-name">اسم الطالب</p>  
+                      
+                    <div class="mt-8 flex justify-center items-center">  
+                        <div class="relative w-40 h-40 flex items-center justify-center bg-white rounded-full shadow-inner p-2">  
+                            <div class="w-full h-full rounded-full border-8 border-gray-100 flex items-center justify-center flex-col relative" id="score-circle-border">  
+                                <span id="result-percent" class="text-4xl font-black text-gray-800 en-text">100%</span>  
+                                <span id="result-score" class="text-sm font-bold text-gray-500 mt-1">15 / 15</span>  
+                            </div>  
+                        </div>  
+                    </div>  
+                      
+                    <div id="result-message" class="mt-6 text-xl font-bold text-yellow-400">  
+                        عمل رائع!  
+                    </div>  
+                </div>  
+                  
+                <div class="p-6 md:p-8">  
+                    <div class="grid grid-cols-2 gap-4 mb-8">  
+                        <div class="bg-green-50 p-4 rounded-xl text-center border border-green-100">  
+                            <span class="block text-3xl font-bold text-green-600 en-text mb-1" id="stat-correct">0</span>  
+                            <span class="text-gray-600 text-sm font-bold">إجابة صحيحة</span>  
+                        </div>  
+                        <div class="bg-red-50 p-4 rounded-xl text-center border border-red-100">  
+                            <span class="block text-3xl font-bold text-red-600 en-text mb-1" id="stat-wrong">0</span>  
+                            <span class="text-gray-600 text-sm font-bold">إجابة خاطئة</span>  
+                        </div>  
+                    </div>  
+  
+                    <div id="mistakes-container" class="mb-8 hidden">  
+                        <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">مراجعة الأخطاء:</h3>  
+                        <div id="mistakes-list" class="space-y-4">  
+                            <!-- Mistakes injected here -->  
+                        </div>  
+                    </div>  
+  
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">  
+                        <button onclick="viewCertificate()" class="flex-1 bg-gold text-yellow-900 bg-yellow-400 hover:bg-yellow-500 font-bold py-3 px-6 rounded-xl shadow-lg transition btn-hover flex items-center justify-center gap-2">  
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>  
+                            عرض الشهادة للحفظ  
+                        </button>  
+                        <button onclick="restartQuiz()" class="flex-1 bg-gray-200 text-gray-800 hover:bg-gray-300 font-bold py-3 px-6 rounded-xl shadow transition btn-hover">  
+                            إعادة الاختبار  
+                        </button>  
+                    </div>  
+                </div>  
+            </div>  
+        </section>  
+    </main>  
+  
+    <!-- ==================== 8. CERTIFICATE OVERLAY ==================== -->  
+    <div id="screen-certificate" class="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 hidden flex-col items-center justify-center overflow-y-auto p-4">  
+          
+        <!-- Instructions Panel (Hidden when taking screenshot) -->  
+        <div id="cert-controls" class="bg-white rounded-xl p-4 mb-4 max-w-3xl w-full shadow-2xl flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-right">  
+            <div>  
+                <h4 class="font-bold text-blue-900">لحفظ شهادتك:</h4>  
+                <p class="text-sm text-gray-600 mt-1">اضغط على "تجهيز للقطة الشاشة" لإخفاء هذه الأزرار، ثم استخدم أزرار جهازك لالتقاط الشاشة. (اضغط على الشاشة للعودة).</p>  
+            </div>  
+            <div class="flex gap-2 w-full sm:w-auto">  
+                <button onclick="prepareScreenshot()" class="flex-1 sm:flex-none bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg transition text-sm">  
+                    تجهيز للقطة الشاشة  
+                </button>  
+                <button onclick="closeCertificate()" class="flex-1 sm:flex-none bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg transition text-sm">  
+                    إغلاق  
+                </button>  
+            </div>  
+        </div>  
+  
+        <!-- The Certificate (A4 Landscape Ratio approx) -->  
+        <div id="cert-capture-area" class="w-full max-w-[900px] aspect-[1.414/1] bg-white relative cert-border shadow-2xl flex flex-col items-center justify-center p-8 md:p-12 text-center" onclick="restoreCertControls()">  
+              
+            <!-- Corner Decorations -->  
+            <div class="absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-yellow-400"></div>  
+            <div class="absolute top-4 right-4 w-12 h-12 border-t-4 border-r-4 border-yellow-400"></div>  
+            <div class="absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-yellow-400"></div>  
+            <div class="absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-yellow-400"></div>  
+  
+            <!-- Content -->  
+            <div class="mb-6">  
+                <svg class="w-16 h-16 text-yellow-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>  
+                <h1 class="text-3xl md:text-5xl font-black text-blue-900 tracking-wider en-text uppercase">Certificate of Completion</h1>  
+                <h2 class="text-xl md:text-2xl font-bold text-gray-600 mt-2">شهادة إنجاز</h2>  
+            </div>  
+  
+            <p class="text-lg md:text-xl text-gray-500 mb-2 en-text italic">This is to certify that</p>  
+            <h3 id="cert-name" class="text-3xl md:text-4xl font-bold text-purple-700 mb-6 pb-2 border-b-2 border-yellow-400 inline-block px-8">  
+                <!-- Name -->  
+            </h3>  
+              
+            <p class="text-gray-600 mb-1 max-w-lg text-sm md:text-base">أكمل/ـت بنجاح أنشطة درس القواعد والتقييم النهائي للوحدة:</p>  
+            <h4 class="text-xl md:text-2xl font-bold text-blue-900 mb-6 en-text">Unit 4: Favorite Pastimes - 3 Grammar</h4>  
+  
+            <div class="grid grid-cols-2 gap-12 w-full max-w-lg mx-auto mt-4 pt-6 border-t border-gray-200">  
+                <div>  
+                    <p class="text-gray-500 text-sm mb-1 uppercase tracking-widest en-text">Score</p>  
+                    <p id="cert-score" class="font-bold text-xl en-text text-teal-600">0%</p>  
+                </div>  
+                <div>  
+                    <p class="text-gray-500 text-sm mb-1 uppercase tracking-widest en-text">Teacher</p>  
+                    <p class="font-bold text-lg text-gray-800 en-text">Mohammad AlFaifi</p>  
+                </div>  
+            </div>  
+              
+            <div class="absolute bottom-6 left-10 text-gray-400 text-sm en-text" id="cert-date">  
+                <!-- Date -->  
+            </div>  
+        </div>  
+          
+        <!-- Hidden overlay instruction -->  
+        <div id="cert-click-hint" class="hidden text-white mt-4 text-sm font-bold opacity-75">  
+            اضغط في أي مكان لإظهار الأزرار  
+        </div>  
+    </div>  
+  
+    <script>  
+        // ==========================================  
+        // 1. DATA: GRAMMAR CARDS  
+        // ==========================================  
+        const learnData = [  
+            {  
+                title: "السؤال عن التكرار (How often?)",  
+                content: `  
+                    <p class="mb-4 text-lg">نستخدم <span class="font-bold text-blue-600 en-text">How often</span> لنسأل "كم مرة" تفعل شيئًا معينًا.</p>  
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4 en-container text-center text-lg">  
+                        <span class="text-purple-600 font-bold">How often</span> + do/does + subject + verb?  
+                    </div>  
+                    <div class="space-y-3 en-container">  
+                        <div class="p-3 bg-blue-50 border-l-4 border-blue-500 rounded text-gray-800">  
+                            <strong>Q:</strong> <span class="text-purple-600 font-bold">How often</span> do you work out?<br>  
+                            <span class="text-sm text-gray-500 rtl block mt-1">(كم مرة تتمرن؟)</span>  
+                        </div>  
+                    </div>  
+                `  
+            },  
+            {  
+                title: "تعبيرات التكرار (Frequency Expressions)",  
+                content: `  
+                    <p class="mb-4 text-lg">نستخدمها للإجابة عن سؤال (How often) ولتحديد عدد المرات بالضبط. <br><span class="text-sm text-gray-500">تأتي عادة في نهاية الجملة.</span></p>  
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 en-container">  
+                        <div class="bg-teal-50 p-3 rounded border border-teal-100"><span class="font-bold">every day</span> <span class="rtl float-right text-gray-500 text-sm">(كل يوم)</span></div>  
+                        <div class="bg-teal-50 p-3 rounded border border-teal-100"><span class="font-bold">once a week</span> <span class="rtl float-right text-gray-500 text-sm">(مرة في الأسبوع)</span></div>  
+                        <div class="bg-teal-50 p-3 rounded border border-teal-100"><span class="font-bold">twice a week</span> <span class="rtl float-right text-gray-500 text-sm">(مرتين/أسبوع)</span></div>  
+                        <div class="bg-teal-50 p-3 rounded border border-teal-100"><span class="font-bold">three times a week</span> <span class="rtl float-right text-gray-500 text-sm">(3 مرات/أسبوع)</span></div>  
+                    </div>  
+                    <div class="p-3 bg-blue-50 border-l-4 border-blue-500 rounded text-gray-800 en-container">  
+                        I work out <span class="text-teal-600 font-bold">every day</span>.<br>  
+                        <span class="text-sm text-gray-500 rtl block mt-1">(أنا أتأمرن كل يوم.)</span>  
+                    </div>  
+                `  
+            },  
+            {  
+                title: "ظروف التكرار (Adverbs of Frequency)",  
+                content: `  
+                    <p class="mb-4 text-lg">كلمات نستخدمها لنبين مدى تكرار فعل معين (من الدائم إلى المنعدم).</p>  
+                    <div class="flex flex-wrap gap-2 mb-4 en-container justify-center">  
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-bold text-sm">always (دائماً)</span>  
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-bold text-sm">usually (عادةً)</span>  
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-bold text-sm">often (غالباً)</span>  
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-bold text-sm">sometimes (أحياناً)</span>  
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-bold text-sm">seldom (نادراً)</span>  
+                        <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full font-bold text-sm">never (أبداً)</span>  
+                    </div>  
+                    <div class="p-3 bg-blue-50 border-l-4 border-blue-500 rounded text-gray-800 en-container">  
+                        She <span class="text-purple-600 font-bold">usually</span> goes shopping on Thursdays.<br>  
+                        <span class="text-sm text-gray-500 rtl block mt-1">(هي عادةً تذهب للتسوق أيام الخميس.)</span>  
+                    </div>  
+                `  
+            },  
+            {  
+                title: "أين نضع ظروف التكرار؟",  
+                content: `  
+                    <div class="space-y-4">  
+                        <div>  
+                            <p class="font-bold text-teal-600 mb-1">1. قبل الفعل الأساسي (Other verbs):</p>  
+                            <div class="p-3 bg-gray-50 rounded border border-gray-200 en-container">  
+                                Sabah <span class="text-purple-600 font-bold">always</span> <span class="underline">takes</span> a shower in the morning.  
+                            </div>  
+                        </div>  
+                        <div>  
+                            <p class="font-bold text-teal-600 mb-1">2. بعد الفعل المساعد (be: am, is, are):</p>  
+                            <div class="p-3 bg-gray-50 rounded border border-gray-200 en-container">  
+                                He <span class="underline">is</span> <span class="text-purple-600 font-bold">never</span> late.  
+                            </div>  
+                        </div>  
+                        <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">  
+                            <span class="font-bold text-yellow-700">ملاحظة مهمة:</span>  
+                            <p class="text-sm mt-1">كلمة (<span class="font-bold en-text">Sometimes</span>) يمكن أن تأتي في البداية: <br>  
+                            <span class="en-text text-gray-600 font-bold">Sometimes I go out. = I sometimes go out.</span></p>  
+                        </div>  
+                    </div>  
+                `  
+            },  
+            {  
+                title: "التعبير عن المعرفة (Know How To)",  
+                content: `  
+                    <p class="mb-4 text-lg">نستخدمها لنقول أننا "نعرف كيف" نفعل شيئًا (مهارة معينة)، وهي تساوي استخدام (can).</p>  
+                      
+                    <div class="space-y-3 en-container">  
+                        <div class="p-3 bg-green-50 border-l-4 border-green-500 rounded text-gray-800">  
+                            <span class="text-green-600 font-bold text-lg">+</span> I <span class="font-bold">know how to</span> ski.<br>  
+                            <span class="text-sm text-gray-500 mt-1 block">(= I can ski) | <span class="rtl inline-block">(أعرف كيف أتزلج)</span></span>  
+                        </div>  
+                        <div class="p-3 bg-red-50 border-l-4 border-red-500 rounded text-gray-800">  
+                            <span class="text-red-600 font-bold text-lg">-</span> I <span class="font-bold">don't know how to</span> ski.<br>  
+                            <span class="text-sm text-gray-500 mt-1 block">(= I can't ski) | <span class="rtl inline-block">(لا أعرف كيف أتزلج)</span></span>  
+                        </div>  
+                    </div>  
+                    <p class="mt-4 text-sm text-gray-500">مع المفرد (He/She) نستخدم: knows / doesn't know.</p>  
+                `  
+            }  
+        ];  
+  
+        // ==========================================  
+        // 2. DATA: PRACTICE QUESTIONS (Instant feedback)  
+        // ==========================================  
+        const practiceData = [  
+            { q: "______ do you work out? - I work out every day.", options: ["How often", "When", "What", "How much"], answer: 0, exp: "نستخدم How often للسؤال عن تكرار الفعل (كم مرة)، والإجابة هنا (كل يوم) تدل على التكرار." },  
+            { q: "I play tennis ______ a week.", options: ["twice", "two", "second", "always"], answer: 0, exp: "الصيغة الصحيحة لقول (مرتين في الأسبوع) هي twice a week." },  
+            { q: "She ______ goes shopping on Thursdays.", options: ["usually", "usually is", "is usually", "go usually"], answer: 0, exp: "ظرف التكرار usually يأتي قبل الفعل الأساسي goes." },  
+            { q: "They ______ play video games.", options: ["sometimes", "sometimes are", "play sometimes", "are sometimes"], answer: 0, exp: "ظرف التكرار sometimes يأتي قبل الفعل الأساسي play." },  
+            { q: "I ______ how to swim.", options: ["know", "knowing", "knows", "am know"], answer: 0, exp: "مع الضمير I نستخدم الفعل في المصدر know (أعرف كيف أسبح)." },  
+            { q: "My brother ______ know how to cook.", options: ["doesn't", "don't", "isn't", "not"], answer: 0, exp: "لنفي المعرفة (know how to) مع المفرد (My brother = He)، نستخدم doesn't." },  
+            { q: "He is ______ late for class.", options: ["never", "never is", "doesn't never", "never does"], answer: 0, exp: "ظرف التكرار never يأتي بعد الفعل المساعد is." },  
+            { q: "______ I go out at night.", options: ["Sometimes", "Always", "Never", "Often"], answer: 0, exp: "كلمة Sometimes هي الوحيدة من هذه الظروف التي يمكن أن تأتي في بداية الجملة." },  
+            { q: "What ______ Sabah usually do on the weekend?", options: ["does", "do", "is", "are"], answer: 0, exp: "السؤال في المضارع البسيط مع المفرد (Sabah = She) يحتاج الفعل المساعد does." },  
+            { q: "Sabah takes a shower ______.", options: ["every day", "day every", "always day", "often"], answer: 0, exp: "تعبير التكرار (كل يوم) هو every day ويأتي عادة في نهاية الجملة." },  
+            { q: "Do you know ______ to ski?", options: ["how", "what", "where", "who"], answer: 0, exp: "التركيب الصحيح للتعبير عن المهارة هو know how to." },  
+            { q: "How many times a week ______ she do her homework?", options: ["does", "do", "is", "are"], answer: 0, exp: "في تكوين السؤال مع المفرد (she) نستخدم الفعل المساعد does." }  
+        ];  
+  
+        // ==========================================  
+        // 3. DATA: QUIZ QUESTIONS (Final Assessment)  
+        // ==========================================  
+        const quizData = [  
+            { q: "______ often does he play football?", options: ["How", "What", "When", "Where"], answer: 0 },  
+            { q: "We have English classes three ______ a week.", options: ["times", "time", "always", "often"], answer: 0 },  
+            { q: "I brush my teeth ______ day.", options: ["every", "always", "all", "once"], answer: 0 },  
+            { q: "Ahmad ______ happy.", options: ["is always", "always is", "always", "is usually always"], answer: 0 },  
+            { q: "They ______ go to the beach in summer.", options: ["usually", "usually are", "are usually", "go usually"], answer: 0 },  
+            { q: "______ I drink coffee in the morning.", options: ["Sometimes", "Always", "Never", "Seldom"], answer: 0 },  
+            { q: "Do you ______ to ride a bike?", options: ["know how", "know", "how know", "knowing"], answer: 0 },  
+            { q: "Sara ______ how to speak French.", options: ["doesn't know", "don't know", "not know", "isn't know"], answer: 0 },  
+            { q: "How often ______ you take French classes?", options: ["do", "does", "are", "is"], answer: 0 },  
+            { q: "I eat pizza ______ a month.", options: ["once", "one", "first", "every"], answer: 0 },  
+            { q: "She ______ TV on weekdays. She is too busy.", options: ["never watches", "watches never", "never watch", "is never watch"], answer: 0 },  
+            { q: "What does he usually ______ on Thursdays?", options: ["do", "does", "doing", "did"], answer: 0 },  
+            { q: "We ______ how to play chess.", options: ["know", "knows", "knowing", "are know"], answer: 0 },  
+            { q: "My father is ______ busy on Mondays.", options: ["often", "often is", "does often", "often does"], answer: 0 },  
+            { q: "Sabah takes French classes ______ a week (Sunday and Tuesday).", options: ["twice", "two", "once", "three times"], answer: 0 }  
+        ];  
+  
+        // ==========================================  
+        // 4. APP STATE & GLOBAL VARIABLES  
+        // ==========================================  
+        let appState = {  
+            studentName: "",  
+            learnIndex: 0,  
+            practiceIndex: 0,  
+            quizIndex: 0,  
+            quizScore: 0,  
+            quizAnswers: [], // Stores user's selected index  
+            isMuted: false  
+        };  
+  
+        let audioCtx;  
+        let selectedQuizOption = null;  
+  
+        // Utility: Element Selector  
+        const el = (id) => document.getElementById(id);  
+  
+        // Screens Array for easy switching  
+        const screens = ['screen-intro', 'screen-learn', 'screen-practice-intro', 'screen-practice', 'screen-quiz-intro', 'screen-quiz', 'screen-results'];  
+  
+        function showScreen(screenId) {  
+            screens.forEach(s => {  
+                if (el(s)) el(s).classList.add('hidden-screen');  
+            });  
+            el(screenId).classList.remove('hidden-screen');  
+            window.scrollTo(0, 0);  
+              
+            // Show Home button on all screens except intro  
+            if (screenId === 'screen-intro') {  
+                el('btn-home').classList.add('hidden');  
+            } else {  
+                el('btn-home').classList.remove('hidden');  
+            }  
+        }  
+  
+        // ==========================================  
+        // 5. AUDIO SYSTEM (Web Audio API)  
+        // ==========================================  
+        function initAudio() {  
+            if (!audioCtx) {  
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();  
+            }  
+            if (audioCtx.state === 'suspended') {  
+                audioCtx.resume();  
+            }  
+        }  
+  
+        function playSound(type) {  
+            if (appState.isMuted || !audioCtx) return;  
+            try {  
+                const osc = audioCtx.createOscillator();  
+                const gainNode = audioCtx.createGain();  
+                osc.connect(gainNode);  
+                gainNode.connect(audioCtx.destination);  
+  
+                if (type === 'correct') {  
+                    osc.type = 'sine';  
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5  
+                    osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1); // A5  
+                    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);  
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);  
+                    osc.start();  
+                    osc.stop(audioCtx.currentTime + 0.3);  
+                } else if (type === 'wrong') {  
+                    osc.type = 'sawtooth';  
+                    osc.frequency.setValueAtTime(300, audioCtx.currentTime);  
+                    osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.2);  
+                    gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);  
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);  
+                    osc.start();  
+                    osc.stop(audioCtx.currentTime + 0.2);  
+                } else if (type === 'success') {  
+                    // Chime for quiz completion  
+                    osc.type = 'triangle';  
+                    osc.frequency.setValueAtTime(440, audioCtx.currentTime);  
+                    osc.frequency.setValueAtTime(554.37, audioCtx.currentTime + 0.1);  
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.2);  
+                    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);  
+                    gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);  
+                    osc.start();  
+                    osc.stop(audioCtx.currentTime + 0.5);  
+                }  
+            } catch (e) { console.log("Audio play prevented."); }  
+        }  
+  
+        function toggleMute() {  
+            appState.isMuted = !appState.isMuted;  
+            if (appState.isMuted) {  
+                el('icon-sound-on').classList.add('hidden');  
+                el('icon-sound-off').classList.remove('hidden');  
+            } else {  
+                el('icon-sound-on').classList.remove('hidden');  
+                el('icon-sound-off').classList.add('hidden');  
+                initAudio();  
+            }  
+        }  
+  
+        // ==========================================  
+        // 6. NAVIGATION & LOGIC  
+        // ==========================================  
+        function goHome() {  
+            // Confirm before leaving if in middle of quiz  
+            if (!el('screen-quiz').classList.contains('hidden-screen') && appState.quizIndex > 0) {  
+                if (!confirm("هل أنت متأكد من العودة؟ ستفقد تقدمك في الاختبار الحالي.")) return;  
+            }  
+            showScreen('screen-intro');  
+        }  
+  
+        function startApp() {  
+            const nameInput = el('student-name').value.trim();  
+            if (nameInput.length < 2) {  
+                el('name-error').classList.remove('hidden');  
+                return;  
+            }  
+            el('name-error').classList.add('hidden');  
+            appState.studentName = nameInput;  
+              
+            initAudio(); // Required by browsers on first user interaction  
+              
+            appState.learnIndex = 0;  
+            renderLearnCard();  
+            showScreen('screen-learn');  
+        }  
+  
+        function renderLearnCard() {  
+            const data = learnData[appState.learnIndex];  
+            const total = learnData.length;  
+              
+            el('learn-progress-text').innerText = `بطاقة ${appState.learnIndex + 1} من ${total}`;  
+            el('learn-progress-bar').style.width = `${((appState.learnIndex + 1) / total) * 100}%`;  
+              
+            el('learn-card-container').innerHTML = `  
+                <div class="fade-in">  
+                    <h3 class="text-2xl font-bold text-blue-900 mb-6 border-b pb-3 border-gray-100 flex items-center gap-2">  
+                        <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center text-sm">${appState.learnIndex + 1}</span>  
+                        ${data.title}  
+                    </h3>  
+                    <div class="text-gray-700 leading-relaxed text-lg">  
+                        ${data.content}  
+                    </div>  
+                </div>  
+            `;  
+  
+            // Update buttons  
+            const btnPrev = el('btn-learn-prev');  
+            const btnNext = el('btn-learn-next');  
+              
+            if (appState.learnIndex === 0) {  
+                btnPrev.disabled = true;  
+                btnPrev.classList.add('opacity-50', 'cursor-not-allowed');  
+            } else {  
+                btnPrev.disabled = false;  
+                btnPrev.classList.remove('opacity-50', 'cursor-not-allowed');  
+            }  
+  
+            if (appState.learnIndex === total - 1) {  
+                btnNext.innerText = "الانتقال للتدريب";  
+                btnNext.classList.replace('bg-blue-600', 'bg-teal-500');  
+                btnNext.classList.replace('hover:bg-blue-700', 'hover:bg-teal-600');  
+            } else {  
+                btnNext.innerText = "التالي";  
+                btnNext.classList.replace('bg-teal-500', 'bg-blue-600');  
+                btnNext.classList.replace('hover:bg-teal-600', 'hover:bg-blue-700');  
+            }  
+        }  
+  
+        function changeLearnCard(step) {  
+            const newIndex = appState.learnIndex + step;  
+            if (newIndex >= 0 && newIndex < learnData.length) {  
+                appState.learnIndex = newIndex;  
+                renderLearnCard();  
+            } else if (newIndex >= learnData.length) {  
+                showScreen('screen-practice-intro');  
+            }  
+        }  
+  
+        function startPractice() {  
+            appState.practiceIndex = 0;  
+            renderPractice();  
+            showScreen('screen-practice');  
+        }  
+  
+        function shuffleArray(array) {  
+            let currentIndex = array.length, randomIndex;  
+            let indices = Array.from(array.keys());  
+            while (currentIndex != 0) {  
+                randomIndex = Math.floor(Math.random() * currentIndex);  
+                currentIndex--;  
+                [indices[currentIndex], indices[randomIndex]] = [indices[randomIndex], indices[currentIndex]];  
+            }  
+            return indices;  
+        }  
+  
+        function renderPractice() {  
+            const qData = practiceData[appState.practiceIndex];  
+            el('practice-counter').innerText = `سؤال ${appState.practiceIndex + 1} / ${practiceData.length}`;  
+            el('practice-q-text').innerText = qData.q;  
+              
+            const optionsContainer = el('practice-options');  
+            optionsContainer.innerHTML = '';  
+              
+            // Fixed order for learning phase to avoid confusion, or shuffle options?  
+            // Let's keep fixed order for options, but map them correctly.  
+            // Actually, shuffling options is better for practice.  
+            let order = shuffleArray(qData.options);  
+              
+            order.forEach((origIndex, i) => {  
+                const optText = qData.options[origIndex];  
+                const btn = document.createElement('button');  
+                btn.className = 'w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition font-bold text-lg text-gray-700 practice-opt-btn';  
+                btn.innerText = optText;  
+                btn.onclick = () => checkPractice(origIndex, btn, order);  
+                optionsContainer.appendChild(btn);  
+            });  
+  
+            // Reset UI  
+            el('practice-feedback').classList.add('hidden');  
+            el('btn-practice-next').classList.add('hidden');  
+            // Re-enable clicks  
+            document.querySelectorAll('.practice-opt-btn').forEach(b => {  
+                b.disabled = false;  
+                b.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');  
+            });  
+        }  
+  
+        function checkPractice(selectedIndex, clickedBtn, currentOrder) {  
+            const qData = practiceData[appState.practiceIndex];  
+            const isCorrect = (selectedIndex === qData.answer);  
+              
+            // Disable all buttons  
+            const allBtns = document.querySelectorAll('.practice-opt-btn');  
+            allBtns.forEach(b => { b.disabled = true; b.classList.add('opacity-50', 'cursor-not-allowed'); });  
+              
+            // Reveal correct answer visually  
+            const correctBtnIndex = currentOrder.indexOf(qData.answer);  
+            if(correctBtnIndex !== -1) {  
+                allBtns[correctBtnIndex].classList.remove('opacity-50', 'border-gray-200', 'hover:bg-blue-50');  
+                allBtns[correctBtnIndex].classList.add('bg-green-100', 'border-green-500', 'text-green-800');  
+            }  
+  
+            const feedbackDiv = el('practice-feedback');  
+            const feedbackTitle = el('practice-feedback-title');  
+            const feedbackText = el('practice-feedback-text');  
+  
+            feedbackDiv.classList.remove('hidden', 'bg-green-50', 'bg-red-50');  
+              
+            if (isCorrect) {  
+                playSound('correct');  
+                feedbackDiv.classList.add('bg-green-50');  
+                feedbackTitle.innerHTML = `<svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span class="text-green-700">إجابة صحيحة!</span>`;  
+            } else {  
+                playSound('wrong');  
+                clickedBtn.classList.remove('opacity-50');  
+                clickedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-800');  
+                feedbackDiv.classList.add('bg-red-50');  
+                feedbackTitle.innerHTML = `<svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> <span class="text-red-700">تحتاج إلى مراجعة</span>`;  
+            }  
+  
+            feedbackText.innerHTML = `  
+                <div class="mb-2 en-text font-bold text-gray-800 bg-white p-2 rounded inline-block shadow-sm">  
+                    ${qData.q.replace('______', `<span class="text-blue-600 border-b-2 border-blue-600">${qData.options[qData.answer]}</span>`)}  
+                </div>  
+                <p class="mt-2 text-gray-700 text-sm md:text-base border-t pt-2 border-gray-200/50">${qData.exp}</p>  
+            `;  
+  
+            // Update button text if last question  
+            const btnNext = el('btn-practice-next');  
+            if (appState.practiceIndex === practiceData.length - 1) {  
+                btnNext.innerText = "الانتقال للتقييم النهائي";  
+                btnNext.classList.replace('bg-blue-600', 'bg-purple-600');  
+                btnNext.classList.replace('hover:bg-blue-700', 'hover:bg-purple-700');  
+            } else {  
+                btnNext.innerText = "السؤال التالي";  
+                btnNext.classList.replace('bg-purple-600', 'bg-blue-600');  
+                btnNext.classList.replace('hover:bg-purple-700', 'hover:bg-blue-700');  
+            }  
+            btnNext.classList.remove('hidden');  
+        }  
+  
+        function nextPractice() {  
+            if (appState.practiceIndex < practiceData.length - 1) {  
+                appState.practiceIndex++;  
+                renderPractice();  
+            } else {  
+                showScreen('screen-quiz-intro');  
+            }  
+        }  
+  
+        function startQuiz() {  
+            appState.quizIndex = 0;  
+            appState.quizAnswers = new Array(quizData.length).fill(null);  
+              
+            // Randomize quiz questions order  
+            appState.shuffledQuiz = shuffleArray(quizData);  
+              
+            renderQuiz();  
+            showScreen('screen-quiz');  
+        }  
+  
+        function renderQuiz() {  
+            const actualIndex = appState.shuffledQuiz[appState.quizIndex];  
+            const qData = quizData[actualIndex];  
+            const total = quizData.length;  
+              
+            el('quiz-counter').innerText = `سؤال ${appState.quizIndex + 1} / ${total}`;  
+            el('quiz-progress-bar').style.width = `${((appState.quizIndex) / total) * 100}%`;  
+              
+            el('quiz-q-text').innerText = qData.q;  
+              
+            const optionsContainer = el('quiz-options');  
+            optionsContainer.innerHTML = '';  
+              
+            // Shuffle options  
+            let order = shuffleArray(qData.options);  
+            selectedQuizOption = null;  
+              
+            order.forEach((origIndex, i) => {  
+                const optText = qData.options[origIndex];  
+                const btn = document.createElement('button');  
+                btn.className = 'w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-purple-400 hover:bg-purple-50 transition font-bold text-lg text-gray-700 quiz-opt-btn';  
+                btn.innerText = optText;  
+                btn.onclick = () => selectQuizOption(origIndex, btn);  
+                optionsContainer.appendChild(btn);  
+            });  
+  
+            // Reset Next Button  
+            const nextBtn = el('btn-quiz-next');  
+            nextBtn.disabled = true;  
+            nextBtn.classList.add('opacity-50', 'cursor-not-allowed');  
+              
+            if (appState.quizIndex === total - 1) {  
+                nextBtn.innerText = "إنهاء وعرض النتيجة";  
+            } else {  
+                nextBtn.innerText = "تثبيت الإجابة والتالي";  
+            }  
+        }  
+  
+        function selectQuizOption(origIndex, clickedBtn) {  
+            selectedQuizOption = origIndex;  
+              
+            // Remove selection from all  
+            document.querySelectorAll('.quiz-opt-btn').forEach(b => {  
+                b.classList.remove('bg-purple-100', 'border-purple-500', 'text-purple-900');  
+                b.classList.add('border-gray-200');  
+            });  
+              
+            // Add selection to clicked  
+            clickedBtn.classList.remove('border-gray-200');  
+            clickedBtn.classList.add('bg-purple-100', 'border-purple-500', 'text-purple-900');  
+              
+            // Enable next  
+            const nextBtn = el('btn-quiz-next');  
+            nextBtn.disabled = false;  
+            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');  
+        }  
+  
+        function nextQuiz() {  
+            if (selectedQuizOption === null) return;  
+              
+            const actualIndex = appState.shuffledQuiz[appState.quizIndex];  
+            appState.quizAnswers[actualIndex] = selectedQuizOption;  
+              
+            if (appState.quizIndex < quizData.length - 1) {  
+                appState.quizIndex++;  
+                renderQuiz();  
+            } else {  
+                calculateResults();  
+            }  
+        }  
+  
+        function calculateResults() {  
+            let score = 0;  
+            let mistakesHTML = '';  
+              
+            quizData.forEach((q, i) => {  
+                const userAns = appState.quizAnswers[i];  
+                if (userAns === q.answer) {  
+                    score++;  
+                } else {  
+                    const wrongText = userAns !== null ? q.options[userAns] : 'لم يُجب';  
+                    const correctText = q.options[q.answer];  
+                    mistakesHTML += `  
+                        <div class="p-4 bg-gray-50 rounded-xl border border-gray-200 en-container text-sm">  
+                            <p class="font-bold text-gray-800 mb-2">${q.q}</p>  
+                            <p class="text-red-600 mb-1"><span class="font-bold rtl inline-block mr-2">إجابتك:</span> <del>${wrongText}</del></p>  
+                            <p class="text-green-600 font-bold"><span class="font-bold rtl inline-block mr-2 text-gray-500 font-normal">الصحيح:</span> ${correctText}</p>  
+                        </div>  
+                    `;  
+                }  
+            });  
+  
+            const total = quizData.length;  
+            const percent = Math.round((score / total) * 100);  
+              
+            el('result-name').innerText = appState.studentName;  
+            el('result-score').innerText = `${score} / ${total}`;  
+              
+            // Animate percentage  
+            let currentP = 0;  
+            const targetP = percent;  
+            const pEl = el('result-percent');  
+            const pBorder = el('score-circle-border');  
+              
+            const interval = setInterval(() => {  
+                if(currentP >= targetP) {  
+                    clearInterval(interval);  
+                    pEl.innerText = `${targetP}%`;  
+                      
+                    // Set border color based on score  
+                    pBorder.classList.remove('border-gray-100');  
+                    if(targetP >= 80) pBorder.classList.add('border-green-400');  
+                    else if(targetP >= 50) pBorder.classList.add('border-yellow-400');  
+                    else pBorder.classList.add('border-red-400');  
+                      
+                } else {  
+                    currentP += Math.ceil((targetP - currentP) / 5) || 1;  
+                    pEl.innerText = `${currentP}%`;  
+                }  
+            }, 30);  
+  
+            el('stat-correct').innerText = score;  
+            el('stat-wrong').innerText = total - score;  
+  
+            const msg = el('result-message');  
+            if (percent >= 90) { msg.innerText = "ممتاز! أداء استثنائي."; msg.className = "mt-6 text-xl font-bold text-green-300"; playSound('success');}  
+            else if (percent >= 70) { msg.innerText = "جيد جداً! لقد فهمت معظم القواعد."; msg.className = "mt-6 text-xl font-bold text-yellow-300"; playSound('success');}  
+            else if (percent >= 50) { msg.innerText = "جيد، لكنك تحتاج لبعض المراجعة."; msg.className = "mt-6 text-xl font-bold text-orange-300"; }  
+            else { msg.innerText = "حاول مرة أخرى، راجع القواعد بعناية."; msg.className = "mt-6 text-xl font-bold text-red-300"; }  
+  
+            const mContainer = el('mistakes-container');  
+            if (score < total) {  
+                el('mistakes-list').innerHTML = mistakesHTML;  
+                mContainer.classList.remove('hidden');  
+            } else {  
+                mContainer.classList.add('hidden');  
+            }  
+  
+            // Prepare Certificate Data  
+            el('cert-name').innerText = appState.studentName;  
+            el('cert-score').innerText = `${percent}% (${score}/${total})`;  
+            const today = new Date();  
+            el('cert-date').innerText = `Date: ${today.toLocaleDateString('en-GB')}`;  
+  
+            showScreen('screen-results');  
+        }  
+  
+        function restartQuiz() {  
+            showScreen('screen-quiz-intro');  
+        }  
+  
+        function viewCertificate() {  
+            el('screen-certificate').classList.remove('hidden');  
+            el('screen-certificate').classList.add('flex');  
+            document.body.style.overflow = 'hidden'; // prevent background scrolling  
+        }  
+  
+        function closeCertificate() {  
+            el('screen-certificate').classList.add('hidden');  
+            el('screen-certificate').classList.remove('flex');  
+            document.body.style.overflow = '';  
+            restoreCertControls();  
+        }  
+  
+        function prepareScreenshot() {  
+            // Hide controls to leave only the certificate on screen  
+            el('cert-controls').classList.add('hidden');  
+            el('cert-click-hint').classList.remove('hidden');  
+        }  
+  
+        function restoreCertControls() {  
+            // Bring controls back if user taps on the certificate area  
+            if (el('cert-controls').classList.contains('hidden')) {  
+                el('cert-controls').classList.remove('hidden');  
+                el('cert-click-hint').classList.add('hidden');  
+            }  
+        }  
+          
+    </script>  
+</body>  
+</html>  
 
